@@ -18,7 +18,7 @@ Verification:
 require 'crypt_checkpass'
 actual   = 'p455w0rd'
 expected = '$5$$D1W6NDlv302WsleruXoUN279B87yf6dFN4ZZhFqV6DD'
-crypt_checkpass(actual, expected) or raise 'NG'
+crypt_checkpass?(actual, expected) or raise 'NG'
 ```
 
 Generation:
