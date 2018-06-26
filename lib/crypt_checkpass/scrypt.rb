@@ -58,7 +58,7 @@ require 'securerandom'
 #
 #   - `salt` is the salt string.
 #
-#   - `csum` is the checksum strgng.
+#   - `csum` is the checksum string.
 #
 # All of above fields are represented as hexadecimal numbers.
 #

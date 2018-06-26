@@ -38,9 +38,9 @@
 #   - `password` is the raw binary password that you want to digest.
 #
 #   - `id`  is "argon2i"  when  you want  an argon2  hash.   Due to  underlying
-#     ruby-argons gem's restriction we do not support other argon2 variants.
+#     ruby-argon2 gem's restriction we do not support other argon2 variants.
 #
-#   - `m_cost` and `t_cost` are both integer parameter to the algorighm.
+#   - `m_cost` and `t_cost` are both integer parameter to the algorithm.
 #
 # The generated password hash has following format.
 #
@@ -77,13 +77,13 @@
 #     hash. Variant "argon2i" seems most widely adopted.
 #
 #   - `v` is, when  available, a number 19.  That doesn't  mean anything.  What
-#     is important is the _absense_ of that parameter, which means the hash was
-#     genrated using old argon2 1.0 and shall be out of date.
+#     is important is the _absence_ of that parameter, which means the hash was
+#     generated using old argon2 1.0 and shall be out of date.
 #
 #   - `m` is the  amount of memory filled by the  algorithm (2**m KiB).  Memory
 #     consumption depends on this parameter.
 #
-#   - `t` is  the mumber of passes  over the memory.  The  running time depends
+#   - `t` is  the number of passes  over the memory.  The  running time depends
 #     linearly on this parameter.
 #
 #   - `p` is the degree of parallelism, called "lanes" in the C implementation.

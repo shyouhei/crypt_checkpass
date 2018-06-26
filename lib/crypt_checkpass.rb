@@ -23,7 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Parses what the  given _hash_ is, apply the same  hasing against _pass_, then
+# Parses what the given _hash_ is,  apply the same hashing against _pass_, then
 # compares the hashed _pass_ and the given _hash_.
 #
 # @param pass [String]              password string.
@@ -56,7 +56,7 @@ end
 #
 # @overload crypt_newhash(password, id:, **kwargs)
 #   At least `:id`  argument must be provided  this case, which is  the name of
-#   key deliveration function (the ID that the PHC string format says).
+#   key derivation function (the ID that the PHC string format says).
 #
 #   @param password [String]                 bare, unhashed binary password.
 #   @param id       [String]                 name of the function.
