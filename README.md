@@ -86,7 +86,7 @@ is bad to use in contemporary programs for several reasons:
   the parameter(salt), by hand.  Failure in generation of a proper
   salt string tends not to yield any errors; for instance typo in
   parameters are normally not detectable.
-    - For instance, in the following example, second invokation of
+    - For instance, in the following example, second invocation of
       `String#crypt` is wrong; it has typo in "round=" (lacks "s").
       However the call does not fail and something unexpected is
       generated.
@@ -98,9 +98,9 @@ is bad to use in contemporary programs for several reasons:
 
 - Even in the "modular" mode, some hash functions are considered
   archaic and no longer recommended at all; for instance module `$1$`
-  is officially abondoned by its author:
+  is officially abandoned by its author:
   http://phk.freebsd.dk/sagas/md5crypt_eol.html, for another instance
-  module `$3$` is consodered completely broken: see the manpage of
+  module `$3$` is considered completely broken: see the manpage of
   FreeBSD.
 - On some OS such as Mac OS, there is no modular mode. Yet, as written
   above, `String#crypt` on Mac OS never fails.  This means even if you
