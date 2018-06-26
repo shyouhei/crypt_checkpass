@@ -189,6 +189,21 @@ class << CryptCheckpass
 
   # @!endgroup
 
+  # @!group PhcStringFormat wrappers
+
+  def phcencode id, params, salt, csum
+    require 'phc_string_format'
+    return PhcStringFormat::Formatter.format \
+      id: id, params: params, salt: salt, hash: csum
+  end
+
+  def phcdecode str
+    require 'phc_string_format'
+    return PhcStringFormat::Formatter.parse str
+  end
+
+  # @!endgroup
+
   def inherited klass
     super
     @kdfs.push klass

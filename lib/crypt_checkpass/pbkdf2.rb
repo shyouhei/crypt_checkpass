@@ -23,8 +23,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require_relative 'phc_string_format'
-
 # PBKDF2 is the most beloved algorithm by security professionals.
 #
 # ### Newhash:
@@ -112,9 +110,9 @@ class CryptCheckpass::PBKDF2 < CryptCheckpass
 
     json     = phcdecode hash
     id       = json[:id]
-    i        = json[:params][:i]
+    i        = json[:params]['i'].to_i
     salt     = json[:salt]
-    expected = json[:csum]
+    expected = json[:hash]
     dklen    = expected.bytesize
     actual   = __derive_key id, i, salt, pass, dklen
 
@@ -144,8 +142,6 @@ end
 
 # helper routines
 class << CryptCheckpass::PBKDF2
-  include CryptCheckpass::PHCStringFormat
-
   private
 
   if RUBY_VERSION >= '2.3.0'
