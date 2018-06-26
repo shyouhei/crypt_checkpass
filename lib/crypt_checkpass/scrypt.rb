@@ -24,7 +24,6 @@
 # SOFTWARE.
 
 require 'securerandom'
-require_relative 'phc_string_format'
 
 # This class is to support RFC7914-related hash variants.
 #
@@ -158,16 +157,14 @@ end
 
 # helper routines
 class << CryptCheckpass::Scrypt
-  include CryptCheckpass::PHCStringFormat
-
   private
 
   def checkpass_phc pass, hash
     require 'consttime_memequal'
 
     json     = phcdecode hash
-    ln, r, p = json[:params].values_at :ln, :r, :p
-    expected = json[:csum]
+    ln, r, p = json[:params].values_at("ln", "r", "p").map(&:to_i)
+    expected = json[:hash]
     salt     = json[:salt]
     klen     = ::SCrypt::Engine::DEFAULTS[:key_len]
     actual   = ::SCrypt::Engine.scrypt pass, salt, 2 ** ln, r, p, klen
