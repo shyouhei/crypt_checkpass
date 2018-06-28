@@ -37,7 +37,7 @@
 #
 #   - `password` is the raw binary password that you want to digest.
 #
-#   - `id`  is "pbkdf2-{digest}".   You can  specify  sha1 /  sha256 /  sha512.
+#   - `id` is  `"pbkdf2-{digest}"`.  You  can specify sha1  / sha256  / sha512.
 #     Unlike plain SHA1, PBKDF2 + SHA1  combination still has no known weakness
 #     as of writing so specifying pbkdf-sha1 should just suffice normally.
 #
@@ -64,9 +64,6 @@
 #   \z
 # }x
 # ```
-#
-# - This is a strict PHC string format. See also
-#   {CryptCheckpass::PHCStringFormat}
 #
 # - The `id` can either be "pbkdf2-sha1", "pbkdf2-sha256", or "pbkdf2-sha512".
 #

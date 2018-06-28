@@ -85,9 +85,6 @@ require 'securerandom'
 # }x
 # ```
 #
-# - This is a strict PHC string format. See also
-#   {CryptCheckpass::PHCStringFormat}
-#
 # - Parameters are `ln`, `r`, and `p` where `ln` deontes log2(N).
 #
 # ### Other formats:
