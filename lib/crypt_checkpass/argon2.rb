@@ -191,7 +191,7 @@ class CryptCheckpass::Argon2 < CryptCheckpass
       require 'argon2'
       @dll = Module.new do
         extend FFI::Library
-        lib = FFI::Compiler::Loader.find 'argon2_wrap'
+        lib = ::Argon2::Ext.ffi_libraries.map(&:name)
         fun = %i[argon2i_verify argon2d_verify argon2id_verify]
         ffi_lib lib
         fun.each do |f|
