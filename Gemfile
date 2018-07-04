@@ -38,4 +38,7 @@ group :test do
     gem 'fiddle'
     gem 'openssl'
   end
+  if RUBY_VERSION < '2.4.0'
+    gem 'activesupport', '= 5.2.0'
+  end
 end

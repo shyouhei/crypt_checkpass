@@ -25,6 +25,7 @@
 
 require 'test-unit'
 require 'simplecov'
+require 'active_support/core_ext/regexp' if RUBY_VERSION < '2.4.0'
 
 SimpleCov.start do
   add_filter 'test/'

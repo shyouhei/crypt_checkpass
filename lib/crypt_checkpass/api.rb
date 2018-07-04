@@ -172,7 +172,7 @@ class << CryptCheckpass
     # @param str [String] target string to test.
     # @return    [true]   accepted.
     # @return    [false]  otherwise.
-    def match? re, str
+    def match? str, re
       return re.match? str
     end
   else
@@ -181,7 +181,7 @@ class << CryptCheckpass
     # @param str [String] target string to test.
     # @return    [true]   accepted.
     # @return    [false]  otherwise.
-    def match? re, str
+    def match? str, re
       md = re.match str
       return !!md
     end
