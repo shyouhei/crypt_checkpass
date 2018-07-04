@@ -25,7 +25,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'crypt_checkpass'
-  spec.version       = 2
+  spec.version       = 3
   spec.author        = 'Urabe, Shyouhei'
   spec.email         = 'shyouhei@ruby-lang.org'
   spec.summary       = 'provides crypt_checkpass / crypt_newhash'
