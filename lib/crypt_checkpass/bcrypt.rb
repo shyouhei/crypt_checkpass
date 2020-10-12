@@ -142,6 +142,7 @@ class CryptCheckpass::Bcrypt < CryptCheckpass
 
   # (see CryptCheckpass.checkpass?)
   def self.checkpass? pass, hash
+    require 'consttime_memequal'
     require 'bcrypt'
 
     obj      = BCrypt::Password.new hash
