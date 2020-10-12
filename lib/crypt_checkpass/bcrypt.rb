@@ -124,6 +124,7 @@ require 'consttime_memequal'
 # @example
 #   crypt_checkpass? 'password', '$2b$10$JlxIYWbT2EUDNvIwrIYcxuKf8pzf58IV4xVWk9yPy5J/ni0LCmz7G'
 #   # => true
+
 class CryptCheckpass::Bcrypt < CryptCheckpass
 
   # (see CryptCheckpass.understand?)
@@ -143,11 +144,9 @@ class CryptCheckpass::Bcrypt < CryptCheckpass
   def self.checkpass? pass, hash
     require 'bcrypt'
 
-    # bcrypt gem accepts `$2a$` and `$2x` only.  We have to tweak.
-    expected = hash.sub %r/\A\$2[by]\$/, "$2a$"
-    obj      = BCrypt::Password.new expected
+    obj      = BCrypt::Password.new hash
     actual   = BCrypt::Engine.hash_secret pass, obj.salt
-    return consttime_memequal? expected, actual
+    return consttime_memequal? hash, actual.b.to_str
   end
 
   # (see CryptCheckpass.provide?)
