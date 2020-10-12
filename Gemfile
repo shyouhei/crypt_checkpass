@@ -27,7 +27,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'argon2'
+  gem 'argon2', '>= 2.0.0'
   gem 'bcrypt'
   gem 'scrypt'
   gem 'unix-crypt'
@@ -41,4 +41,7 @@ group :test do
   if RUBY_VERSION < '2.4.0'
     gem 'activesupport', '>= 5.2.4.3', '< 6.0.0'
   end
+
+  # Waiting https://github.com/naokikimura/phc_string_format/pull/12
+  gem 'phc_string_format', git: 'https://github.com/shyouhei/phc_string_format'
 end

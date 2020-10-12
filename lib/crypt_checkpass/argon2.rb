@@ -167,7 +167,7 @@ class CryptCheckpass::Argon2 < CryptCheckpass
   # (see CryptCheckpass.provide?)
   # @note we don't support generating argon2d hashs.
   def self.provide? id
-    return id == 'argon2i'
+    return id == 'argon2id'
   end
 
   # (see CryptCheckpass.newhash)
@@ -176,7 +176,7 @@ class CryptCheckpass::Argon2 < CryptCheckpass
   # @param id     [String]  name of the algorithm (ignored)
   # @param m_cost [Integer] argon2 memory usage (2^m KiB)
   # @param t_cost [Integer] argon2 iterations.
-  def self.newhash pass, id: 'argon2i', m_cost: 12, t_cost: 3
+  def self.newhash pass, id: 'argon2id', m_cost: 12, t_cost: 3
     require 'argon2'
 
     argon2 = ::Argon2::Password.new m_cost: m_cost, t_cost: t_cost
