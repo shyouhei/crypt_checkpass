@@ -177,7 +177,7 @@ class CryptCheckpass::Argon2 < CryptCheckpass
   # @param m_cost [Integer] argon2 memory usage (2^m KiB)
   # @param t_cost [Integer] argon2 iterations.
   def self.newhash pass, id: 'argon2id', m_cost: 12, t_cost: 3
-    require 'argon2'
+    __require
 
     argon2 = ::Argon2::Password.new m_cost: m_cost, t_cost: t_cost
     return argon2.create pass
@@ -188,7 +188,7 @@ class CryptCheckpass::Argon2 < CryptCheckpass
   def self.__load_argon2_dll
     @m.synchronize do
       next if defined? @dll
-      require 'argon2'
+      __require
       @dll = Module.new do
         extend FFI::Library
         lib = ::Argon2::Ext.ffi_libraries.map(&:name)
@@ -201,4 +201,9 @@ class CryptCheckpass::Argon2 < CryptCheckpass
     end
   end
   private_class_method :__load_argon2_dll
+
+  def self.__require
+    require 'argon2', 'argon2', '>= 2.0.0'
+  end
+  private_class_method :__require
 end

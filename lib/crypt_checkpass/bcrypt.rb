@@ -23,7 +23,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'consttime_memequal'
 
 # BCrypt is a  blowfish based password hash function.  BSD  devs and users tend
 # to love  this function.  As  of writing this is  the only hash  function that
@@ -142,8 +141,7 @@ class CryptCheckpass::Bcrypt < CryptCheckpass
 
   # (see CryptCheckpass.checkpass?)
   def self.checkpass? pass, hash
-    require 'consttime_memequal'
-    require 'bcrypt'
+    __require
 
     obj      = BCrypt::Password.new hash
     actual   = BCrypt::Engine.hash_secret pass, obj.salt
@@ -162,7 +160,7 @@ class CryptCheckpass::Bcrypt < CryptCheckpass
   # @param rounds [Integer] 4 to 31, inclusive.
   # @param ident  [String]  "2b" or "2y" or something like that.
   def self.newhash pass, id: 'bcrypt', rounds: nil, ident: '2b'
-    require 'bcrypt'
+    __require
     len = pass.bytesize
     raise ArgumentError, <<-"end", len if len > 72
       password is %d bytes, which is too long (up to 72)
@@ -214,4 +212,10 @@ class CryptCheckpass::Bcrypt < CryptCheckpass
     return ret.sub %r/\A\$2.?\$/, "$#{ident}$"
   end
   private_class_method :__generate
+
+  def self.__require
+    require 'consttime_memequal'
+    require 'bcrypt', 'bcrypt', '>= 3.1.13'
+  end
+  private_class_method :__require
 end

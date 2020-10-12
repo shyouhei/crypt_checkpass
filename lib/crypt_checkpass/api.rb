@@ -153,16 +153,17 @@ class << CryptCheckpass
   end
 
   # Utility gem +  require function.  It is  often the case a library  is a gem
-  # and  calling  gem  before  require is  desirable.@shyouhei  really  doesn't
+  # and  calling gem  before  require is  desirable.  @shyouhei really  doesn't
   # understand why this is not a canon.
   #
   # @return      [void]
   # @param gem   [String]         gem name.
   # @param lib   [String]         library name.
+  # @param spec  [Array]          Passed to gem.
   # @raise       [Gem::LoadError] gem not found.
   # @raise       [LoadError]      lib not found.
-  def require gem, lib = gem
-    Kernel.gem gem
+  def require gem, lib = gem, *spec
+    Kernel.gem gem, *spec
     Kernel.require lib
   end
 

@@ -27,8 +27,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'argon2', '>= 2.0.0'
-  gem 'bcrypt', '>= 3.1.13'
+  gem 'argon2'
+  gem 'bcrypt'
   gem 'scrypt'
   gem 'unix-crypt'
   if RUBY_VERSION >= '2.1.0'

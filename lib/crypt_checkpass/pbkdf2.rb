@@ -103,7 +103,7 @@ class CryptCheckpass::PBKDF2 < CryptCheckpass
 
   # (see CryptCheckpass.checkpass?)
   def self.checkpass? pass, hash
-    require 'consttime_memequal'
+    __require
 
     json     = phcdecode hash
     id       = json[:id]
@@ -166,5 +166,9 @@ class << CryptCheckpass::PBKDF2
     n, d    = __default_dklen_for id
     dklen ||= n
     return OpenSSL::PKCS5.pbkdf2_hmac pass, salt, iter, dklen, d
+  end
+
+  def __require
+    require 'consttime_memequal'
   end
 end

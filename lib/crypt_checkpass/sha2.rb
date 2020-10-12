@@ -127,7 +127,7 @@ class CryptCheckpass::SHA2 < CryptCheckpass
 
   # (see CryptCheckpass.checkpass?)
   def self.checkpass? pass, hash
-    require 'unix-crypt', 'unix_crypt'
+    __require
 
     return UnixCrypt.valid? pass, hash
   end
@@ -159,4 +159,9 @@ class CryptCheckpass::SHA2 < CryptCheckpass
     end
     return klass.build pass, nil, rounds
   end
+
+  def self.__require
+    require 'unix-crypt', 'unix_crypt'
+  end
+  private_class_method :__require
 end

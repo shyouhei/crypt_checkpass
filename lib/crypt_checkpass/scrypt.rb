@@ -122,7 +122,7 @@ class CryptCheckpass::Scrypt < CryptCheckpass
 
   # (see CryptCheckpass.checkpass?)
   def self.checkpass? pass, hash
-    require 'scrypt'
+    __require
 
     case hash
     when /\A\$scrypt\$/ then return checkpass_phc pass, hash
@@ -143,7 +143,7 @@ class CryptCheckpass::Scrypt < CryptCheckpass
   # @param r      [Integer] block size.
   # @param p      [Integer] parallelism parameter.
   def self.newhash pass, id: 'scrypt', ln: 8, r: 8, p: 1
-    require 'scrypt'
+    __require
 
     salt = SecureRandom.random_bytes ::SCrypt::Engine::DEFAULTS[:salt_size]
     klen = ::SCrypt::Engine::DEFAULTS[:key_len]
@@ -157,7 +157,7 @@ class << CryptCheckpass::Scrypt
   private
 
   def checkpass_phc pass, hash
-    require 'consttime_memequal'
+    __require
 
     json     = phcdecode hash
     ln, r, p = json[:params].values_at("ln", "r", "p").map(&:to_i)
@@ -204,5 +204,10 @@ class << CryptCheckpass::Scrypt
          [$] \g<csum2>
       ) \z
     }x
+  end
+
+  def __require
+    require 'consttime_memequal'
+    require 'scrypt'
   end
 end
